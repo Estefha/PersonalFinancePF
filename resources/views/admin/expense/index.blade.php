@@ -122,4 +122,5 @@
             </div>         
         </div>
     </div>
+//consectual esto debe ser borrado solo es una prueba para mirar comit y canbios para aprender a subir
 </x-app-layout>
