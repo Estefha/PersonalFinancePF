@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-blue-500 leading-tight">
-            {{ __('Tipos de Gastos') }}
+            {{ __('Ingresos') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -20,13 +20,13 @@
                             {{-- TITULO --}}
                               <div class="mb-6">
                                 <h3 class="text-xl font-bold text-gray-700">
-                                    Nuevo Tipo de Gasto
+                                    Editar Ingreso
                                 </h3>
                             </div>
                             {{-- ERRORES --}}
                             @if ($errors->any())
                                 <div class="alert alert-danger">
-                                    <strong>Error al crear tipo de gasto</strong>
+                                    <strong>Error al crear Ingreso</strong>
                                 </div>
                             @endif
                             {{-- 🔴 ERRORES GENERALES 
@@ -44,32 +44,28 @@
                                 </div>
                             @endif  --}}
                             {{-- FORMULARIO --}}
-                            <form action="{{ route('expense_types.store') }}" method="POST" class="space-y-6">
+                            <form action="{{ route('incomes.update', $income) }}" method="POST" class="space-y-6">
                                 @csrf
-                                {{-- NOMBRE --}}
-                                <div>
+                                @method('PUT')
+                                {{-- MONTO --}}
+                               <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
-                                        Nombre del Gasto
+                                        Monto
                                     </label>
 
-                                    <input type="text"
-                                           name="name"
-                                           value="{{ old('name') }}"
-                                           placeholder="Ingrese el nombre"
-                                           
-                                            class="w-full rounded-lg  shadow-sm
-                                            focus:border-blue-500 focus:ring-blue-500
-                                            {{ $errors->has('name') ? 'border-red-500' :
-                                             'border-gray-300'}}"
-                                                                                            
-                                        
-                                        >
-                                         @error('name')
-                                                <p class="mt-1 text-sm text-red-600">
-                                                    {{ $message }}
-                                                </p>
-                                        @enderror
+                                    <input
+                                        type="number"
+                                        name="amount"
+                                        value="{{ old('amount', $income->amount) }}"
+                                        placeholder="Ingrese el valor"
+                                        class="w-full rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500
+                                        {{ $errors->has('amount') ? 'border-red-500' : 'border-gray-300' }}">
 
+                                    @error('amount')
+                                        <p class="mt-1 text-sm text-red-600">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
                                 {{-- Descripción --}}
                                 <div class="mb-4">
@@ -85,8 +81,9 @@
 
                                         class="w-full rounded-lg shadow-sm
                                             focus:border-blue-500 focus:ring-blue-500
-                                            {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300'}}"
-                                    >{{ old('description') }}</textarea>
+                                            {{ $errors->has('description') ? 'border-red-500' :
+                                             'border-gray-300' }}"
+                                    >{{ old('description', $income->description) }}</textarea>
 
                                     @error('description')
                                         <p class="mt-1 text-sm text-red-600">
@@ -96,8 +93,8 @@
 
                                 </div>
                                 <div class="flex justify-end">
-                                    <a href="{{ route('expense_types.index') }}"
-                                    class="bg-red-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded mr-2">
+                                    <a href="{{ route('incomes.index') }}"
+                                    class="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded mr-2">
                                         Cancelar
                                     </a>
 

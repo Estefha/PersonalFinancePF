@@ -121,6 +121,11 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        //
+         $expense->delete();
+
+        return redirect()
+            ->route('incomes.index')
+            ->with('success', 'Gasto eliminado correctamente');
     }
+    
 }

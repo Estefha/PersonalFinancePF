@@ -1,25 +1,24 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
-use App\Models\User;
-use App\Models\ExpenseType;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Expense extends Model
+use Illuminate\Database\Eloquent\Model;
+
+class Debt extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use Hasfactory, SoftDeletes;
 
-        protected $fillable = [
+    protected $fillable = [
         'ulid',
-        'expense_type_id',
         'user_id',
+        'creditor',
         'amount',
         'description',
+        'status',
         'date',
     ];
 
@@ -28,23 +27,17 @@ class Expense extends Model
         static::creating(function($model){
             $model->ulid = (string) Str::ulid();
         });
-    }    
+    }
 
     public function getRouteKeyName(): string
     {
         return 'ulid';
     }
 
-
-    public function expenseType()
-    {
-        return $this->belongsTo(ExpenseType::class);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-     
-    
-}   
+
+
+}
