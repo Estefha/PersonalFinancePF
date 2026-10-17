@@ -73,9 +73,11 @@
                                     </label>
 
                                     <input
-                                        type="number"
+                                        type="text"
                                         name="amount"
-                                        value="{{ old('amount', $expense->amount) }}"
+                                        value="{{ old('amount', number_format($expense->amount, 0, ',', '.')) }}"
+                                        oninput="this.value = this.value.replace(/\D/g, '')
+                                            .replace(/\B(?=(\d{3})+(?!\d))/g, '.')"
                                         placeholder="Ingrese el valor"
                                         class="w-full rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500
                                         {{ $errors->has('amount') ? 'border-red-500' : 'border-gray-300' }}">
@@ -130,3 +132,20 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    const amount = document.getElementById('amount');
+    const amountRaw = document.getElementById('amount_raw');
+
+    function formatAmount(value) {
+        return value.replace(/\D/g, '')
+            .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    amount.addEventListener('input', function () {
+        this.value = formatAmount(this.value);
+    });
+
+    document.querySelector('form').addEventListener('submit', function () {
+        amountRaw.value = amount.value.replace(/\./g, '');
+    });
+</script>
