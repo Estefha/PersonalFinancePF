@@ -52,7 +52,6 @@
                                 <table class="min-w-full border border-gray-300 rounded-lg overflow-hidden">
                                     <thead class="bg-amber-600 text-white">
                                         <tr>
-                                            <th class="px-4 py-2 border">Usuario</th>
                                             <th class="px-4 py-2 border">Tipo gasto</th>
                                             <th class="px-4 py-2 border">Monto</th>
                                             <th class="px-4 py-2 border">Descripción</th>
@@ -63,7 +62,6 @@
                                     <tbody class="bg-white">
                                         @forelse($expenses as $expense)
                                             <tr class="hover:bg-gray-100">
-                                                <td class="px-4 py-2 border">{{ $expense->user->name }}</td>
                                                 <td class="px-4 py-2 border">{{ $expense->expenseType->name ?? 'Sin tipo' }}</td>
                                                 <td class="px-4 py-2 border">{{ number_format($expense->amount, 0, ',', '.') }}</td>
                                                 <td class="px-4 py-2 border">{{ $expense->description }}</td>                                                                                         
@@ -84,11 +82,10 @@
                                                         </svg>
                                                     </a>
                                                     {{-- ELIMINAR --}}
-                                                    <form action="{{ route('expenses.destroy', $expense->id) }}"
+                                                    <form action="{{ route('expenses.destroy', $expense) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-
                                                         <button type="submit"
                                                                 class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded inline-flex items-center gap-2">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -122,5 +119,4 @@
             </div>         
         </div>
     </div>
-//consectual esto debe ser borrado solo es una prueba para mirar comit y canbios para aprender a subir
 </x-app-layout>

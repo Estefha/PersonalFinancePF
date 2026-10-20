@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\DebtController;
+use App\Http\Controllers\IncomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/expense_types', ExpenseTypeController::class);
     Route::resource('/expenses', ExpenseController::class);
 
+    Route::resource('/incomes', IncomeController::class);
+    
+    Route::resource('/debts', DebtController::class);
 });
 
 require __DIR__.'/auth.php';

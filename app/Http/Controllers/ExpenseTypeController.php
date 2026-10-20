@@ -15,7 +15,8 @@ class ExpenseTypeController extends Controller
      */
     public function index()
     {
-        $expenseTypes = ExpenseType::paginate(10);
+        $expenseTypes = ExpenseType::latest()->paginate(10);
+        
         return view('admin.expense_type.index', compact('expenseTypes'));
     }
 

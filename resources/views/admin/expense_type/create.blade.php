@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-blue-500 leading-tight">
-            {{ __('Tpos de Gastos') }}
+            {{ __('Tipos de Gastos') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -53,22 +53,22 @@
                                     </label>
 
                                     <input type="text"
-                                           name="name"
-                                           value="{{ old('name') }}"
-                                           placeholder="Ingrese el nombre"
-                                           
-                                            class="w-full rounded-lg  shadow-sm
-                                            focus:border-blue-500 focus:ring-blue-500
-                                            {{ $errors->has('name') ? 'border-red-500' :
-                                             'border-gray-300'}}"
-                                                                                            
+                                        name="name"
+                                        value="{{ old('name') }}"
+                                        placeholder="Ingrese el nombre"
                                         
-                                        >
-                                         @error('name')
-                                                <p class="mt-1 text-sm text-red-600">
-                                                    {{ $message }}
-                                                </p>
-                                        @enderror
+                                        class="w-full rounded-lg  shadow-sm
+                                        focus:border-blue-500 focus:ring-blue-500
+                                        {{ $errors->has('name') ? 'border-red-500' :
+                                            'border-gray-300'}}"
+                                                                                        
+                                    
+                                    >
+                                        @error('name')
+                                            <p class="mt-1 text-sm text-red-600">
+                                                {{ $message }}
+                                            </p>
+                                    @enderror
 
                                 </div>
                                 {{-- Descripción --}}

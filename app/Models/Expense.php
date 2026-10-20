@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
-
 use App\Models\User;
 use App\Models\ExpenseType;
 
@@ -16,6 +15,7 @@ class Expense extends Model
     use SoftDeletes;
 
         protected $fillable = [
+        'ulid',
         'expense_type_id',
         'user_id',
         'amount',
@@ -45,5 +45,6 @@ class Expense extends Model
     {
         return $this->belongsTo(User::class);
     }
+     
     
-}
+}   
