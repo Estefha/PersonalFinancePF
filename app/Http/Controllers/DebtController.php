@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Debt;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\DebtRequest;
 
 class DebtController extends Controller
 {
@@ -22,15 +23,24 @@ class DebtController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.debt.create');
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DebtRequest $request)
     {
-        //
+        Debt::create([
+            'user_id' => auth()->id(),
+            'creditor' => $request->creditor,
+            'amount' => $request->amount,
+            'description' => $request->description,
+            'date' => now(), 
+        ]);
+        return redirect()
+        ->route('debts.index')
+        ->with('success', 'Tipo de gasto creado correctamente');
     }
 
     /**

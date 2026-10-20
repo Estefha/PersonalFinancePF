@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('amount', 10, 2);
             $table->string('description');
             $table->dateTime('date');
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });
