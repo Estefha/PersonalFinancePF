@@ -80,7 +80,7 @@
                                                 <td class="px-4 py-2 border break-words">{{$debt->status ? 'Activo' : 'Inactivo' }}</td>
                                                 <td class="flex gap-2 border">
                                                     {{-- EDITAR --}}
-                                                    <a href="#"{{--{{ route('debts.edit', $debt->ulid) }}" --}}
+                                                    <a href={{--"#" --}}"{{ route('debts.edit', $debt->ulid) }}"
                                                     class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                             class="w-5 h-5"
@@ -93,7 +93,7 @@
                                                         </svg>
                                                     </a>
                                                     {{-- ELIMINAR --}}
-                                                    <form action="#"{{--{{ route('debts.destroy', $debt->ulid) }}"--}}
+                                                    <form action={{--"#"--}}"{{ route('debts.destroy', $debt->ulid) }}" 
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')

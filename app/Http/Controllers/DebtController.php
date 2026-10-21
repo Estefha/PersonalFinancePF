@@ -56,15 +56,22 @@ class DebtController extends Controller
      */
     public function edit(Debt $debt)
     {
-        //
+        return view('admin.debt.edit', compact('debt'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Debt $debt)
+    public function update(DebtRequest $request, Debt $debt)
     {
-        //
+        $debt->update([
+            'creditor' => $request->creditor,
+            'amount' => $request->amount,
+            'description' => $request->description,
+        ]);
+        return redirect()
+        ->route('debts.index')
+        ->with('success', 'Gasto actualizado correctamente');
     }
 
     /**
@@ -72,6 +79,10 @@ class DebtController extends Controller
      */
     public function destroy(Debt $debt)
     {
-        //
+        $debt->delete();
+
+        return redirect()
+            ->route('debts.index')
+            ->with('success', 'Deuda eliminada correctamente');
     }
 }
