@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-blue-500 leading-tight">
-            {{ __('Tipos de Gastos') }}
+            {{ __('CREDITOS') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -20,7 +20,7 @@
                             {{-- TITULO --}}
                               <div class="mb-6">
                                 <h3 class="text-xl font-bold text-gray-700">
-                                    Nuevo Tipo de Gasto
+                                    Nuevo Tipo Credito
                                 </h3>
                             </div>
                             {{-- ERRORES --}}
@@ -68,7 +68,10 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
                                         Monto
                                     </label>
-                                    <input type="number" name="amount"  value="{{ old('amount') }}" placeholder="Ingrese el valor"
+                                    <input type="text" name="amount"  value="{{ old('amount') }}" 
+                                    oninput="this.value = this.value.replace(/\D/g, '')
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, '.')"
+                                    placeholder="Ingrese el valor"
                                         class="w-full rounded-lg  shadow-sm focus:border-blue-500 focus:ring-blue-500
                                         {{ $errors->has('amount') ? 'border-red-500' : 'border-gray-300'}}"
                                     >
