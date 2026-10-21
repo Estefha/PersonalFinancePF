@@ -14,7 +14,14 @@ class IncomeRequest extends FormRequest
     {
         return true;
     }
-
+    //LA VALIDACION DE LOS PUNTOS AQUI BEBERIA IR 
+    protected function prepareForValidation():
+    void
+    {
+        $this->merge([
+            'amount' => str_replace('.', '', $this->amount),
+        ]);
+    }
     /**
      * Get the validation rules that apply to the request.
      *
