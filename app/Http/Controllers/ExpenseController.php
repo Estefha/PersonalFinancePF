@@ -33,6 +33,9 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'amount' => str_replace('.', '', $request->amount),
+        ]);
         $request->validate([
             'expense_type_id' => 'required|exists:expense_types,id',
             'amount' => 'required|numeric|min:0',
