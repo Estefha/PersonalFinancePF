@@ -76,8 +76,8 @@
                                                 <td class="px-4 py-2 border">{{ $debt->creditor }}</td>
                                                 <td class="px-4 py-2 border">{{ number_format($debt->amount, 0, ',', '.') }}</td>
                                                 <td class="px-4 py-2 border break-words">{{ $debt->description }}</td>
-                                                <td class="px-4 py-2 border break-words">{{ \Carbon\Carbon::parse($debt->date)->format('d/m/Y H:i') }}</td>
-                                                <td class="px-4 py-2 border break-words">{{$debt->status ? 'Activo' : 'Inactivo' }}</td>
+                                                <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($debt->date)->format('d/m/Y H:i') }}</td>
+                                                <td class="px-4 py-2 border">{{$debt->status ? 'Activo' : 'Inactivo' }}</td>
                                                 <td class="flex gap-2 border">
                                                     {{-- EDITAR --}}
                                                     <a href={{--"#" --}}"{{ route('debts.edit', $debt->ulid) }}"
@@ -98,7 +98,8 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit"
-                                                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded inline-flex items-center gap-2">
+                                                            class="bg-red-500 hover:bg-red-600 text-white 
+                                                                w-10 h-9 rounded flex items-center justify-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 class="w-5 h-5 text-white-500"
                                                                 viewBox="0 0 24 24"
