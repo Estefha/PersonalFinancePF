@@ -73,22 +73,14 @@
                                         @forelse($incomes as $income)
                                             <tr class="hover:bg-gray-100">
 
-                                                <td class="px-4 py-2 border">
-                                                    {{ $income->amount }}
-                                                </td>
-                                                <td class="px-4 py-2 border break-words">
-                                                    {{ $income->description }}
-                                                </td>
-                                                <td class="px-4 py-2 border">
-                                                    {{ $income->date }}
-                                                </td>
-
+                                                <td class="px-4 py-2 border">{{ number_format($income->amount, 0, ',', '.') }}</td>
+                                                <td class="px-4 py-2 border break-words">{{ $income->description }}</td>
+                                                <td class="px-4 py-2 border">{{\Carbon\Carbon::parse($income->date)->format('d/m/Y H:i') }}</td>
                                                 <td class="flex gap-2">
-
                                                     {{-- EDITAR --}}
-                                                    
                                                     <a href="{{ route('incomes.edit', $income->ulid) }}"
-                                                    class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
+                                                        class="bg-blue-500 hover:bg-blue-600 text-white 
+                                                            w-10 h-9 rounded flex items-center justify-center">
                                                         
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                             class="w-5 h-5"
@@ -109,13 +101,13 @@
                                                         @method('DELETE')
 
                                                         <button type="submit"
-                                                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded inline-flex items-center gap-2">
+                                                                class="bg-red-500 hover:bg-red-600 text-white w-10 h-9 rounded flex items-center justify-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 class="w-5 h-5 text-white-500"
                                                                 viewBox="0 0 24 24"
                                                                 fill="currentColor">
 
-                                                                <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9z"/>
+                                                                <path d="M11 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9z"/>
                                                             </svg>
                                                                
                                                         </button>

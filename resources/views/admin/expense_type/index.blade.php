@@ -71,32 +71,24 @@
                                     <tbody class="bg-white">
                                         @forelse($expenseTypes as $type)
                                             <tr class="hover:bg-gray-100">
-
-                                               
-                                                <td class="px-4 py-2 border">
-                                                    {{ $type->name }}
-                                                </td>
-                                                <td class="px-4 py-2 border break-words">
-                                                    {{ $type->description }}
-                                                </td>
-
+                                                <td class="px-4 py-2 border">{{ $type->name }}</td>
+                                                <td class="px-4 py-2 border break-words">{{ $type->description }}</td>
                                                 <td class="flex gap-2">
-
                                                     {{-- EDITAR --}}
                                                     <a href="{{ route('expense_types.edit', $type->slug) }}"
-                                                    class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
+                                                        class="bg-blue-500 hover:bg-blue-600 text-white 
+                                                        w-10 h-9 rounded flex items-center justify-center">
                                                         
-                                                         <svg xmlns="http://www.w3.org/2000/svg"
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
                                                             class="w-5 h-5"
                                                             viewBox="0 0 24 24"
                                                             fill="currentColor">
 
                                                             <path d="M4 17.25V20h2.75L17.81 8.94l-2.75-2.75L4 17.25zm15.71-9.04
-                                                                    a1.003 1.003 0 000-1.42l-2.5-2.5
-                                                                    a1.003 1.003 0 00-1.42 0l-1.96 1.96
-                                                                    3.75 3.75 2.13-1.79z"/>
+                                                            a1.003 1.003 0 000-1.42l-2.5-2.5
+                                                            a1.003 1.003 0 00-1.42 0l-1.96 1.96
+                                                            3.75 3.75 2.13-1.79z"/>
                                                         </svg>
-                                                          
                                                     </a>
 
                                                     {{-- ELIMINAR --}}
@@ -107,7 +99,8 @@
                                                         @method('DELETE')
 
                                                         <button type="submit"
-                                                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded inline-flex items-center gap-2">
+                                                            class="bg-red-500 hover:bg-red-600 text-white 
+                                                                w-10 h-9 rounded flex items-center justify-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 class="w-5 h-5 text-white-500"
                                                                 viewBox="0 0 24 24"
