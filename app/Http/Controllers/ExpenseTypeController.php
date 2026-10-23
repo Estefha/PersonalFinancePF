@@ -15,7 +15,8 @@ class ExpenseTypeController extends Controller
      */
     public function index()
     {
-        $expenseTypes = ExpenseType::paginate(10);
+        $expenseTypes = ExpenseType::latest()->paginate(10);
+        
         return view('admin.expense_type.index', compact('expenseTypes'));
     }
 
@@ -81,6 +82,16 @@ class ExpenseTypeController extends Controller
         $request->validate([
             'name' => 'required|string|max:50|unique:expense_types,name,' . $expenseType->id,
             'description' => 'required|string|max:255',
+        ], [
+         
+            // NAME
+            'name.required' => 'El nombre es obligatorio',
+            'name.unique' => 'Este tipo de gasto ya existe',
+            'name.max' => 'El nombre no puede tener más de 50 caracteres',
+
+            // DESCRIPTION
+            'description.required' => 'La descripción es obligatoria',
+            'description.max' => 'La descripción no puede tener más de 255 caracteres',    
         ]);
 
         $expenseType->update([

@@ -33,6 +33,9 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'amount' => str_replace('.', '', $request->amount),
+        ]);
         $request->validate([
             'expense_type_id' => 'required|exists:expense_types,id',
             'amount' => 'required|numeric|min:0',
@@ -87,6 +90,10 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
+
+        $request->merge([
+            'amount' => str_replace('.', '', $request->amount),
+        ]);
         $request->validate([
             'expense_type_id' => 'required|exists:expense_types,id',
             'amount' => 'required|numeric|min:0',
@@ -121,6 +128,11 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
+
+        return redirect()
+            ->route('expenses.index')
+            ->with('success', 'Gasto eliminado correctamente');
     }
+    
 }

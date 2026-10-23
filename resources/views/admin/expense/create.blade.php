@@ -74,10 +74,14 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
                                         Monto
                                     </label>
-                                    <input type="number" name="amount"  value="{{ old('amount') }}" placeholder="Ingrese el valor"
+                                    <input type="text" name="amount"  value="{{ old('amount') }}" 
+                                        oninput="this.value = this.value.replace(/\D/g, '')
+                                        .replace(/\B(?=(\d{3})+(?!\d))/g, '.')"
+                                        placeholder="Ingrese el valor"
                                         class="w-full rounded-lg  shadow-sm focus:border-blue-500 focus:ring-blue-500
-                                        {{ $errors->has('amount') ? 'border-red-500' : 'border-gray-300'}}">
-                                    @error('name')
+                                        {{ $errors->has('amount') ? 'border-red-500' : 'border-gray-300'}}"
+                                    >
+                                    @error('amount')
                                         <p class="mt-1 text-sm text-red-600">
                                             {{ $message }}
                                         </p>
@@ -86,21 +90,17 @@
 
                                 {{-- Descripción --}}
                                 <div class="mb-4">
-
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
                                         Descripción
                                     </label>
-
                                     <textarea
                                         name="description"
                                         rows="3"
                                         placeholder="Descripción del gasto"
-
                                         class="w-full rounded-lg shadow-sm
                                             focus:border-blue-500 focus:ring-blue-500
                                             {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300'}}"
                                     >{{ old('description') }}</textarea>
-
                                     @error('description')
                                         <p class="mt-1 text-sm text-red-600">
                                             {{ $message }}

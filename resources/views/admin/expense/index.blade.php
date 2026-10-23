@@ -52,7 +52,6 @@
                                 <table class="min-w-full border border-gray-300 rounded-lg overflow-hidden">
                                     <thead class="bg-amber-600 text-white">
                                         <tr>
-                                            <th class="px-4 py-2 border">Usuario</th>
                                             <th class="px-4 py-2 border">Tipo gasto</th>
                                             <th class="px-4 py-2 border">Monto</th>
                                             <th class="px-4 py-2 border">Descripción</th>
@@ -63,39 +62,39 @@
                                     <tbody class="bg-white">
                                         @forelse($expenses as $expense)
                                             <tr class="hover:bg-gray-100">
-                                                <td class="px-4 py-2 border">{{ $expense->user->name }}</td>
                                                 <td class="px-4 py-2 border">{{ $expense->expenseType->name ?? 'Sin tipo' }}</td>
                                                 <td class="px-4 py-2 border">{{ number_format($expense->amount, 0, ',', '.') }}</td>
-                                                <td class="px-4 py-2 border">{{ $expense->description }}</td>                                                                                         
-                                                <td class="px-4 py-2 border break-words">{{ \Carbon\Carbon::parse($expense->date)->format('d/m/Y H:i') }}</td>
+                                                <td class="px-4 py-2 border break-words">{{ $expense->description }}</td>                                                                                         
+                                                <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($expense->date)->format('d/m/Y H:i') }}</td>
                                                 <td class="flex gap-2">
                                                     {{-- EDITAR --}}
                                                     <a href="{{ route('expenses.edit', $expense->ulid) }}"
-                                                    class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
-                                                         <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="bg-blue-500 hover:bg-blue-600 text-white 
+                                                            w-10 h-9 rounded flex items-center justify-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
                                                             class="w-5 h-5"
                                                             viewBox="0 0 24 24"
                                                             fill="currentColor">
 
                                                             <path d="M4 17.25V20h2.75L17.81 8.94l-2.75-2.75L4 17.25zm15.71-9.04
-                                                                    a1.003 1.003 0 000-1.42l-2.5-2.5
-                                                                    a1.003 1.003 0 00-1.42 0l-1.96 1.96
-                                                                    3.75 3.75 2.13-1.79z"/>
+                                                            a1.003 1.003 0 000-1.42l-2.5-2.5
+                                                            a1.003 1.003 0 00-1.42 0l-1.96 1.96
+                                                            3.75 3.75 2.13-1.79z"/>
                                                         </svg>
                                                     </a>
                                                     {{-- ELIMINAR --}}
-                                                    <form action="{{ route('expenses.destroy', $expense->id) }}"
+                                                    <form action="{{ route('expenses.destroy', $expense) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-
                                                         <button type="submit"
-                                                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded inline-flex items-center gap-2">
+                                                            class="bg-red-500 hover:bg-red-600 text-white 
+                                                            w-10 h-9 rounded flex items-center justify-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                class="w-5 h-5 text-white-500"
+                                                                class="w-5 h-5"
                                                                 viewBox="0 0 24 24"
                                                                 fill="currentColor">
-                                                                <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9z"/>
+                                                                <path d="M11 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9z"/>
                                                             </svg>                                                              
                                                         </button>
                                                     </form>
@@ -122,5 +121,4 @@
             </div>         
         </div>
     </div>
-//consectual esto debe ser borrado solo es una prueba para mirar comit y canbios para aprender a subir
 </x-app-layout>
