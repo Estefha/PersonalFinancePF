@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\DebtRequest;
 
+
 class DebtController extends Controller
 {
     /**

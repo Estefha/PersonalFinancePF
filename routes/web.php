@@ -5,6 +5,7 @@ use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\DebtController;
 use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\DebtPaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/incomes', IncomeController::class);
     
     Route::resource('/debts', DebtController::class);
+    Route::resource('/debt_payments', DebtPaymentController::class);
 });
 
 require __DIR__.'/auth.php';
