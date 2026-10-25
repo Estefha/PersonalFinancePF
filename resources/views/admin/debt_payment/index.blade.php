@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-3xl text-green-600 leading-tight">
-            {{ __('Deudas') }}
+            {{ __('Pago de Deudas') }}
         </h2>
     </x-slot>
 
@@ -43,44 +43,40 @@
                                     Listado de Deudas
                                 </h3>
 
-                                <a href="{{ route('debts.create') }}"  
+                                <a href="{{ route('debt_payments.create') }}"  
                                 class="bg-green-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg shadow inline-flex items-center gap-2">
                                      <!-- SVG -->
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" clip-rule="evenodd" />
                                     </svg>
-
-                                    Deudas
+                                    Pago de Deudas
                                 </a>
                             </div>
-
                             {{-- TABLA --}}
                             <div class="overflow-x-auto">
                                 <table class="min-w-full border border-gray-300 rounded-lg overflow-hidden">
 
                                     <thead class="bg-green-600 text-white">
                                         <tr>
-                                            <th class="px-4 py-2 border">Credito</th>
+                                            <th class="px-4 py-2 border"></th>
+                                            <th class="px-4 py-2 border">Deuda</th>
                                             <th class="px-4 py-2 border">Monto</th>
                                             <th class="px-4 py-2 border">Descripción</th>
                                             <th class="px-4 py-2 border">Fecha</th>
-                                            <th class="px-4 py-2 border">Status</th>
                                             <th class="px-4 py-2 border">Acción</th>
-
                                         </tr>
                                     </thead>
 
                                     <tbody class="bg-white">
-                                        @forelse($debts as $debt)
+                                        @forelse($debtPayments as $debtPayment)
                                             <tr class="hover:bg-gray-100">
-                                                <td class="px-4 py-2 border">{{ $debt->creditor }}</td>
-                                                <td class="px-4 py-2 border">{{ number_format($debt->amount, 0, ',', '.') }}</td>
-                                                <td class="px-4 py-2 border break-words">{{ $debt->description }}</td>
-                                                <td class="px-4 py-2 border break-words">{{ \Carbon\Carbon::parse($debt->date)->format('d/m/Y H:i') }}</td>
-                                                <td class="px-4 py-2 border break-words">{{$debt->status ? 'Activo' : 'Inactivo' }}</td>
+                                                <td class="px-4 py-2 border">{{ $debtPayment->debt->creditor ?? 'Sin tipo' }}</td>
+                                                <td class="px-4 py-2 border">{{ number_format($debtPayment->debt->amount, 0, ',', '.') }}</td>
+                                                <td class="px-4 py-2 border break-words">{{ $debtPayment->debt->description }}</td>
+                                                <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($debtPayment->debt->date)->format('d/m/Y H:i') }}</td>
                                                 <td class="flex gap-2 border">
                                                     {{-- EDITAR --}}
-                                                    <a href="#"{{--{{ route('debts.edit', $debt->ulid) }}" --}}
+                                                    <a href="{{ route('debt_payments.edit', $debtPayment->ulid) }}"
                                                     class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                             class="w-5 h-5"
@@ -93,7 +89,7 @@
                                                         </svg>
                                                     </a>
                                                     {{-- ELIMINAR --}}
-                                                    <form action="#"{{--{{ route('debts.destroy', $debt->ulid) }}"--}}
+                                                    <form action="{{ route('debt_payments.destroy', $debtPayment) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -121,10 +117,9 @@
                                     </tbody>
                                 </table>
                             </div>
-
                             {{-- PAGINACIÓN --}}
                             <div class="mt-4">
-                                {{ $debts->links() }}
+                                {{ $debtPayments->links() }}
                             </div>
 
                         </div>
