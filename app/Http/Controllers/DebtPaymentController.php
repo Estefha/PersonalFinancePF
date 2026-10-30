@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DebtPayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Debt;
 
@@ -22,7 +23,8 @@ class DebtPaymentController extends Controller
      */
     public function create()
     {
-        //
+        $debts = Debt::where('user_id', auth()->id())->get();
+        return view('admin.debt_payment.create', compact('debts'));
     }
 
     /**

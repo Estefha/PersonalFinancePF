@@ -43,7 +43,7 @@
                                     Listado de Deudas
                                 </h3>
 
-                                <a href="#"{{--{{ route('debt_payments.create') }}--}} 
+                                <a href="{{ route('debt_payments.create') }}" 
                                 class="bg-green-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg shadow inline-flex items-center gap-2">
                                      <!-- SVG -->
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
