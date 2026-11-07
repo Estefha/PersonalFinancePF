@@ -55,12 +55,11 @@
 
                                     <select name="debt_id" 
                                         class="w-full rounded-lg shadow-sm border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                                        <option value="">
-                                            Selecione una deuda
-                                        </option>    
+                                        <option value="">Selecione una deuda</option> 
+
                                         @foreach ($debts as $debt)
-                                            <option value="{{ $debt->id }}">
-                                                
+                                            <option value="{{ $debt->id }}"
+                                                {{ old('debt_id') == $debt->id ? 'selected' : '' }}>
                                                 {{ $debt->creditor }} Credito ${{ number_format($debt->amount, 0, ',', '.') }}
                                             </option>    
                                         @endforeach

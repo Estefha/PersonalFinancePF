@@ -59,7 +59,8 @@
                                             Selecione un tipo de Gasto
                                         </option>    
                                         @foreach ($expenseTypes as $expenseType)
-                                            <option value="{{ $expenseType->id }}">
+                                            <option value="{{ $expenseType->id }}"
+                                                {{ old('expense_type_id') == $expenseType->id ? 'selected' : '' }}>
                                                 {{ $expenseType->name }}
                                             </option>    
                                         @endforeach

@@ -77,7 +77,7 @@
                                                 <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($debtPayment->debt->date)->format('d/m/Y H:i') }}</td>
                                                 <td class="flex gap-2 border">
                                                     {{-- EDITAR --}}
-                                                    <a href="#"{{--{{ route('debt_payments.edit', $debtPayment->ulid) }}" --}}
+                                                    <a href="{{ route('debt_payments.edit', $debtPayment->ulid) }}"
                                                     class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                             class="w-5 h-5"
@@ -90,7 +90,7 @@
                                                         </svg>
                                                     </a>
                                                     {{-- ELIMINAR --}}
-                                                    <form action="#"{{--{{ route('debt_payments.destroy', $debtPayment) }}" --}}
+                                                    <form action="{{ route('debt_payments.destroy', $debtPayment) }}" 
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
