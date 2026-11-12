@@ -40,7 +40,7 @@
                             {{-- HEADER TABLA --}}
                             <div class="flex justify-between items-center mb-4">
                                 <h3 class="text-2xl font-bold text-green-700">
-                                    Listado de Deudas
+                                    Pago de Deudas55555
                                 </h3>
 
                                 <a href="{{ route('debt_payments.create') }}" 
@@ -72,7 +72,7 @@
                                             <tr class="hover:bg-gray-100">
                                                 <td class="px-4 py-2 border">{{ $debtPayment->debt->creditor ?? 'Sin tipo' }}</td>
                                                 <td class="px-4 py-2 border">{{ number_format($debtPayment->debt->amount, 0, ',', '.') }}</td>
-                                                <td class="px-4 py-2 border break-words">{{ number_format($debtPayment->amount, 0, ',', '.') }}</td> 
+                                                <td class="px-4 py-2 border">{{ number_format($debtPayment->amount, 0, ',', '.') }}</td> 
                                                 <td class="px-4 py-2 border break-words">{{ $debtPayment->description }}</td>
                                                 <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($debtPayment->debt->date)->format('d/m/Y H:i') }}</td>
                                                 <td class="flex gap-2 border">

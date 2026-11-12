@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\SavingController;
 use App\Http\Controllers\DebtController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\DebtPaymentController;
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('/debts', DebtController::class);
     Route::resource('/debt_payments', DebtPaymentController::class);
+
+    Route::resource('/savings', SavingController::class);
 });
 
 require __DIR__.'/auth.php';

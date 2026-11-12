@@ -39,12 +39,9 @@ class DebtPaymentRequest extends FormRequest
         return[
             'debt_id.required' => 'La deuda es obligatoria',
             'debt_id.exists' => 'La deuda seleccionada no existe',
-
             'amount.required' => 'El valor es obligatorio',
             'amount.numeric' => 'El valor debe ser numerico',
             'amount.min' => 'El valor no puede ser negativo',
-
-            // DESCRIPTION
             'description.required' => 'La descripción es obligatoria',
             'description.max' => 'La descripción no puede tener más de 255 caracteres',
         ];

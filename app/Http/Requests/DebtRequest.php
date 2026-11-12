@@ -41,7 +41,6 @@ class DebtRequest extends FormRequest
     {
         return[
             'creditor.required' => 'El Nombre es obligatorio',
-
             'amount.required' => 'El valor es obligatorio',
             'amount.numeric' => 'El valor debe ser numerico',
             'amount.min' => 'El valor no puede ser negativo',

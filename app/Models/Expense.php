@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Saving;
 use App\Models\ExpenseType;
 
 class Expense extends Model
@@ -46,5 +47,9 @@ class Expense extends Model
         return $this->belongsTo(User::class);
     }
      
+    public function savingRecord()
+    {
+        return $this->hasOne(Saving::class);
+    }
     
 }   

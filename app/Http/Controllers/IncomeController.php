@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Income;
 use App\Http\Requests\IncomeRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class IncomeController extends Controller
@@ -13,7 +14,7 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        $incomes = Income::with('user')->where('user_id', auth()->id())->latest()->paginate(10);
+        $incomes = Income::with('user')->where('user_id', Auth::id())->latest()->paginate(10);
         return view('admin.icome.index', compact('incomes'));
     }
 
@@ -31,7 +32,7 @@ class IncomeController extends Controller
     public function store(IncomeRequest $request)
     {
         Income::create([
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'amount' => $request->amount,
             'description' => $request->description,
             'date' => now(), 
